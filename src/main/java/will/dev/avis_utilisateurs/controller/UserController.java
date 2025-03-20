@@ -3,13 +3,12 @@ package will.dev.avis_utilisateurs.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import will.dev.avis_utilisateurs.entities.User;
 import will.dev.avis_utilisateurs.services.UserService;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -29,5 +28,11 @@ public class UserController {
     @PostMapping("activation")
     public void activation(@RequestBody Map<String, String> activation){
         this.userService.activation(activation);
+    }
+
+    //Get Account create today
+    @GetMapping("account_create_today")
+    public ResponseEntity<Map<String, Object>> getAccountCreateToDay(){
+        return this.userService.getAccountCreateToDay();
     }
 }
